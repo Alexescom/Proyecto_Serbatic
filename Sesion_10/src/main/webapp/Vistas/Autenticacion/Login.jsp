@@ -41,7 +41,7 @@
                		<input type="button" class="btn btn-outline-warning" style= "width:150px"  id="botonn" value="Registrar">
                	</a>
                </center>
-               <center><a onclick=recuperarContraseña()>Si ha olvidado su contraseña, pulse <span style="Color: #FFBF00">aquí</span>.</a></center>
+               <center><a href="<%= request.getContextPath() %>/Vistas/Autenticacion/RecuperarContraseña.jsp" style="text-decoration: none; color: black">Si ha olvidado su contraseña, pulse <span style="Color: #FFBF00">aquí</span>.</a></center>
                <%
                		if(request.getAttribute("mensaje") != null){
                %>

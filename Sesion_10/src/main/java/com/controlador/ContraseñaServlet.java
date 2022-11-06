@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Service.DatosUsuario;
+import Service.RecuperarService;
 import dao.pojos.Usuario;
 
 /**
@@ -43,6 +44,24 @@ public class ContraseñaServlet extends HttpServlet {
 			 
 			 //Redirigimos
 			 request.getRequestDispatcher("Vistas/Usuario/Perfil.jsp").forward(request, response);
+			
+		}else if (request.getParameter("Operacion").equals("Recuperar")) {
+			
+			String usuario = (request.getParameter("UsuarioRecuperar"));
+			System.out.println(usuario);
+			if(!RecuperarService.recuperarContraseña(usuario)) {
+
+				request.setAttribute("mensaje", "Usuario no encontrado en el sistema");
+				request.getRequestDispatcher("Vistas/Autenticacion/RecuperarContraseña.jsp").forward(request, response);
+				
+			} else {
+				
+				request.setAttribute("mensaje", "");
+				request.getRequestDispatcher("Vistas/Autenticacion/Login.jsp").forward(request, response);
+			}
+			
+			//Redirigimos
+			 
 			
 		}
 	}

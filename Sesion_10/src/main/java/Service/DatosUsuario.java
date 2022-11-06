@@ -28,6 +28,11 @@ public class DatosUsuario {
 		
 	}
 	
+	public static Boolean modificarContraseñaRecuperacion (Usuario user){
+		
+		return ope.modificarContraseñaRecuperacion(user);
+		
+	}
 	
 	public static boolean modificarUsuarioBaja (int id){
 		

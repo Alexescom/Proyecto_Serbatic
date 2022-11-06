@@ -115,6 +115,31 @@ public class OperationsUsuario {
 		}
 }
 	
+	public boolean modificarContraseñaRecuperacion(Usuario user){
+		
+		conexion = Conexion.getConexion();
+	  	PreparedStatement stmt;
+	  	String contraseña = passwordEncryptor.encryptPassword(user.getClave());
+        
+		try {
+			
+			stmt = conexion.prepareStatement("update usuarios set clave=? where email=?");
+			stmt.setString(1, contraseña);
+			stmt.setString(2, user.getEmail());
+			
+			int result = stmt.executeUpdate();
+			conexion.commit();
+			
+//			System.out.println("El email es " + user.getEmail());
+			return true;
+	        
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+}
+	
 	
 	public boolean modificarUsuarioBaja(int id){
 		
