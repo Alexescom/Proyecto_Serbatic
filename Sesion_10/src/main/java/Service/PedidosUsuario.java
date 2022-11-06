@@ -37,6 +37,11 @@ public class PedidosUsuario {
 		
 	}
 
+	public boolean eliminarDetallePedido(int id){
+		
+		return ope.eliminarDetallePedido(id);
+		
+	}
 	
 	public Boolean cambiarEstadoPedido(int id, String estado){
 		

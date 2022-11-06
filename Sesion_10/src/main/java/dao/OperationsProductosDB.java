@@ -72,7 +72,7 @@ public class OperationsProductosDB {
 }	
 	
     //---------------------------INSERTAR---------------------------//
-	public boolean insertarProducto(Articulo articulo){
+	public static boolean insertarProducto(Articulo articulo){
 		
 			conexion = Conexion.getConexion();
 		  	PreparedStatement stmt;

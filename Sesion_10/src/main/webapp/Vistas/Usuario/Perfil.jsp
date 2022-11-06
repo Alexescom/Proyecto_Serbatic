@@ -60,17 +60,6 @@
 	                                  	</div>
 	                                 </div>
                                 </div>
-                                <br></br>
-                                <div class="col-md-12 overflow-hidden  float-right">
-                                	<div class="row justify-content-md-center">
-                                		<div class="col-6">
-	                                    	<h6 class="text-right"> &#11166 &nbsp Contraseña:</h6>
-	                                  	</div>
-	                                  	<div class="col-6  m-auto" >
-	                                    	<input class="text" style="color:grey;" value=<%=usuario.getClave()%> name="Password"></input>
-	                                  	</div>
-	                                 </div>
-                                </div>
                                 <br><br>
                                 <div class="col-md-12 overflow-hidden  float-right">
                                 	<div class="row justify-content-md-center">
@@ -193,25 +182,29 @@
                                 <div class="col-md-12 overflow-hidden  float-right">
                                 	<div class="row justify-content-md-center">
                                 		<div class="col-6">
-                                    		<h6 class="text-right"> &#11166 &nbsp Eliminar cuenta:</h6>
+                                    		<h6 class="text-right"> &#11166 &nbsp Cambiar contraseña:</h6>
                                   		</div>
 										<div class="col-6  m-auto" >
-                                    		  <button class="btn btn-danger btn-sm" style= "width:80px" onclick="eliminarCuenta()">
-			                                    Eliminar
-			                                  </button>
+		                                  	<a href="<%= request.getContextPath() %>/ContraseñaServlet?Operacion=Ver" style="text-decoration: none; color: white">
+		                                    	<button type = "button" class ="btn btn-primary">
+		                                   
+		                                    			Cambiar contraseña
+		                                    		
+		                                    	</button>
+		                                    </a>
                                   		</div>
                                 	</div>
                                 </div>
                          
                                 
-                                <br></br><br><br></br><br><br></br><br><br></br><br><br></br><br><br></br><br><br></br><br><br><br><br><br><br><br><br>
+                                <br></br><br><br></br><br><br></br><br><br></br><br><br></br><br><br></br><br><br></br><br><br><br><br><br>
                                 <div class="col-md-12 overflow-hidden  float-right">
                                 	<div class="row justify-content-md-center">
 		                                <div class="col-7">
 		                                    <h6> Si desea cerrar sesión pulse el botón:</h6>
 		                                </div>
 		                                <div class="col-2 float-right "  >
-		                                	<a href="LogoutServlet">
+		                                	<a href="LogoutServlet" >
 		                                  		<button type="button" class="btn-sm btn-secondary " style= "width:140px;margin-right:0px" >
 				                                    Cerrar sesión
 				                               </button>

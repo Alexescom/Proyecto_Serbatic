@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.jasypt.util.password.StrongPasswordEncryptor;
+
 import Conection.Conexion;
 import dao.pojos.Pedido;
 import dao.pojos.Usuario;
@@ -15,6 +17,7 @@ public class OperationsUsuario {
 	
 	//Variables
 	private static Connection conexion;
+	StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
 	
     
     //Métodos
@@ -60,9 +63,8 @@ public class OperationsUsuario {
 	        
 			try {
 				
-				stmt = conexion.prepareStatement("update usuarios set email= ?, clave=?, nombre=?, apellido1=?, apellido2=?, direccion=?, provincia=?, localidad=?, telefono=?, dni=? where id=?");
+				stmt = conexion.prepareStatement("update usuarios set email= ?, nombre=?, apellido1=?, apellido2=?, direccion=?, provincia=?, localidad=?, telefono=?, dni=? where id=?");
 				stmt.setString(1, user.getEmail());
-				stmt.setString(2, user.getClave());
 				stmt.setString(3, user.getNombre());
 				stmt.setString(4, user.getApellido1());
 				stmt.setString(5, user.getApellido2());
@@ -85,6 +87,34 @@ public class OperationsUsuario {
 				return false;
 			}
 	}
+	
+	
+	
+	public boolean modificarContraseña(Usuario user){
+		
+		conexion = Conexion.getConexion();
+	  	PreparedStatement stmt;
+	  	String contraseña = passwordEncryptor.encryptPassword(user.getClave());
+        
+		try {
+			
+			stmt = conexion.prepareStatement("update usuarios set clave=? where id=?");
+			stmt.setString(1, contraseña);
+			stmt.setInt(2, user.getId());
+			
+			int result = stmt.executeUpdate();
+			conexion.commit();
+			
+//			System.out.println("El email es " + user.getEmail());
+			return true;
+	        
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+}
+	
 	
 	public boolean modificarUsuarioBaja(int id){
 		

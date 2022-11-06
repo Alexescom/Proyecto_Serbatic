@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Service.DatosUsuario;
+import Service.ExportarService;
 import Service.ProductosService;
 import Service.UsuariosService;
 import dao.OperationsDB;
@@ -64,7 +65,7 @@ public class ProductosServlet extends HttpServlet {
 				 articulo.setImpuesto(Float.parseFloat(request.getParameter("Impuesto")));
 				
 				 
-				 //Modificamos el usuario en base de datos
+				 //Modificamos el producto en base de datos
 				 ProductosService.modificarProducto(articulo);
 				 
 				 ArrayList<Articulo> artic = ope.recogerArticulos(Integer.parseInt(request.getParameter("Id")));
@@ -73,7 +74,7 @@ public class ProductosServlet extends HttpServlet {
 				 request.getRequestDispatcher("Vistas/Empleado/Productos/ProductosVista.jsp").forward(request, response); 
 				
 				
-			}else { //insertar nuevo producto
+			}else if (request.getParameter("Operacion").equals("Insertar")) { //insertar nuevo producto
 				
 				//Rellenamos con los datos introducidos
 				 Articulo articulo = new Articulo();
@@ -84,10 +85,21 @@ public class ProductosServlet extends HttpServlet {
 				 articulo.setStock(Integer.parseInt(request.getParameter("Stock")));
 				 articulo.setImpuesto(Float.parseFloat(request.getParameter("Impuesto")));
 				 
-				 //Insertamos al usuario en la base de datos
+				 //Insertamos el producto en la base de datos
 				 ProductosService.insertarProducto(articulo);
 				 
 				 //Redirigimos 
+				ArrayList <Articulo> articulos = ope.recogerArticulos(0);
+				request.setAttribute("Articulos", articulos);
+				request.getRequestDispatcher("Vistas/Empleado/Productos/ProductosIndex.jsp").forward(request, response);
+				
+			} else if (request.getParameter("Operacion").equals("Exportar")) {
+				
+				//Exportamos los articulos
+				ExportarService.exportarProductos(ope.recogerArticulos(0));
+				
+				//Redirigimos 
+				//Cargamos los artículos que se tienen que mostrar en el catálogo
 				ArrayList <Articulo> articulos = ope.recogerArticulos(0);
 				request.setAttribute("Articulos", articulos);
 				request.getRequestDispatcher("Vistas/Empleado/Productos/ProductosIndex.jsp").forward(request, response);
@@ -105,16 +117,26 @@ public class ProductosServlet extends HttpServlet {
 				
 			}else if (request.getParameter("Operacion").equals("Eliminar")) { //Eliminar producto
 				
-				 //Modificamos el producto en base de datos
-				 ProductosService.modificarProductoBaja(Integer.parseInt(request.getParameter("Id")));
+				//Modificamos el producto en base de datos
+				ProductosService.modificarProductoBaja(Integer.parseInt(request.getParameter("Id")));
 				 
 				//Cargamos los artículos que se tienen que mostrar en el catálogo
 				ArrayList <Articulo> articulos = ope.recogerArticulos(0);
 				request.setAttribute("Articulos", articulos);
 				request.getRequestDispatcher("Vistas/Administrador/Productos/ProductosIndex.jsp").forward(request, response);
 				
+			}else if (request.getParameter("Operacion").equals("Importar")) { //Importar productos
+				
+				//Importamos los productos
+				ExportarService.importarProductos();
+				
+				//Cargamos los artículos que se tienen que mostrar en el catálogo
+				ArrayList <Articulo> articulos = ope.recogerArticulos(0);
+				request.setAttribute("Articulos", articulos);
+				request.getRequestDispatcher("Vistas/Administrador/Productos/ProductosIndex.jsp").forward(request, response);
+				
+				
 			}
-			
 			
 		}
 		

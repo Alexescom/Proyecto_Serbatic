@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.OperationsDB;
+import dao.OperationsValoracionDB;
 
 /**
  * Servlet implementation class ProductoServlet
@@ -34,7 +35,8 @@ public class ProductoServlet extends HttpServlet {
 		int id =Integer.parseInt(request.getParameter("Id"));
 		
 		//Operación a base de datos
-		request.setAttribute("Articulo", ope.recogerArticulos(id));
+		request.setAttribute("Articulo", ope.recogerArticulos(id)); //Recoger articulo
+		request.setAttribute("Valoraciones", OperationsValoracionDB.recogerValoraciones(id)); //Recogemos valoraciones
 		
 		//Cargamos la vista
 		request.getRequestDispatcher("Vistas/Productos/Producto.jsp").forward(request, response);

@@ -81,7 +81,7 @@
 										<%	}else{ %> 
 								    	
 										<%}%>
-								    	<a  href="PedidoServlet?Id_pedido=<%= a.getId() %>&Operacion=Mostrar">
+								    	<a  href="PedidoServlet?Id_pedido=<%= a.getId() %>&Operacion=Mostrar&Estado=<%= a.getEstado()%>">
 								    		<small class="btn btn-sm btn-warning"  role="button">Detalles del pedido »</small>
 								    	</a>
 								    </div>

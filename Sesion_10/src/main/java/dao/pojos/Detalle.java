@@ -6,6 +6,7 @@ public class Detalle {
 	private int id;
 	private int id_pedido;
 	private int id_producto;
+	private boolean cancelar;
 	private int unidades;
 	private float precio_unidad;
 	private float impuesto;
@@ -61,6 +62,12 @@ public class Detalle {
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	public boolean isCancelar() {
+		return cancelar;
+	}
+	public void setCancelar(boolean cancelar) {
+		this.cancelar = cancelar;
 	}
 	
 }

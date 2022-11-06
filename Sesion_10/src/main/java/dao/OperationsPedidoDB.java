@@ -246,6 +246,7 @@ public class OperationsPedidoDB {
 				detalle.setImpuesto(rs.getFloat("impuesto"));
 				detalle.setTotal(rs.getDouble("total"));
 				detalle.setNombre(rs.getString("nombre"));
+				detalle.setCancelar(rs.getBoolean("cancelar"));
 				detalles.add(detalle);
 
 			}
@@ -315,5 +316,65 @@ public class OperationsPedidoDB {
 		
 		
 	}
+
+	
+	//---------------------------ELIMINAR---------------------------//	
+	public boolean eliminarDetallePedido(int id){
 		
+		conexion = Conexion.getConexion();
+	  	PreparedStatement stmt;
+	  	PreparedStatement stmt2;
+	  	PreparedStatement stmt3;
+	  	PreparedStatement stmt4;
+        
+		try {
+			
+			//Marcamos como eliminado
+			stmt = conexion.prepareStatement("update detalles_pedido set cancelar= 1  where id=?");
+			stmt.setInt(1, id);
+			
+			stmt.executeUpdate();
+//			conexion.commit();
+			
+			//Recogemos el id pedido y el precio total
+			stmt4 = conexion.prepareStatement("select id_pedido, total from detalles_pedido where id = ?");
+			stmt4.setInt(1, id);
+			ResultSet rs = stmt4.executeQuery(); 
+			
+			while(rs.next() ) {
+				
+				int id_pedido = rs.getInt("id_pedido");
+				double totalDetalle = rs.getDouble("total");
+				
+				//Actualizamos el valor del total del pedido
+				stmt2 = conexion.prepareStatement("select  total from pedidos where id = ?");
+				stmt2.setInt(1, id_pedido);
+				ResultSet rs1 = stmt2.executeQuery();
+				while(rs1.next() ) {
+					
+					double total = rs1.getDouble("total");
+					total -= totalDetalle;
+					
+					//Hacemos el update
+					stmt3 = conexion.prepareStatement("update pedidos set total = ?  where id=?");
+					stmt3.setDouble(1, total);
+					stmt3.setInt(2, id_pedido);
+					
+					stmt3.executeUpdate();
+					
+					
+				}
+			}
+			conexion.commit();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		
+		
+		
+	}
+	
 }

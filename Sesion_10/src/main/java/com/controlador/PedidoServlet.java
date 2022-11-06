@@ -40,12 +40,26 @@ public class PedidoServlet extends HttpServlet {
 			detalles = pedido.recogerDetallePedidos(id);
 			request.setAttribute("Detalles", detalles);
 			request.setAttribute("Id_pedido", id);
-
+			request.setAttribute("Estado", request.getParameter("Estado"));
 			//Redireccionamos
 			request.getRequestDispatcher("Vistas/Usuario/DetallePedido.jsp").forward(request, response);
 			
 			
-		}else { //Cancelar pedido pendiente de envio
+		} else if (request.getParameter("Operacion").equals("EliminarDetalle")) {
+			
+			//Eliminamos el detalle pedido
+			pedido.eliminarDetallePedido(Integer.parseInt(request.getParameter("Id")));
+
+			//Recogemos los detalles pedido del pedido
+			detalles = pedido.recogerDetallePedidos(id);
+			request.setAttribute("Detalles", detalles);
+			request.setAttribute("Id_pedido", id);
+			request.setAttribute("Estado", "PE");
+			//Redireccionamos
+			request.getRequestDispatcher("Vistas/Usuario/DetallePedido.jsp").forward(request, response);
+		
+		
+		} else { //Cancelar pedido pendiente de envio
 			
 			//Llamamos a modificar la base de datos
 			pedido.cambiarEstadoPedido(id, request.getParameter("Estado"));

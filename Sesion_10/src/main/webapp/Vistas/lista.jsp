@@ -1,8 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Cat·logo</title>
+    <title>Cat√°logo</title>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/CSS/index.css">
 
 </head>
@@ -10,14 +11,14 @@
 
  
 <body style="height: 100%">
-	<!--  Cabecera de la p·gina -->
+	<!--  Cabecera de la p√°gina -->
 	<jsp:include page="Estaticos/Header.jsp" />
 	
 	<div class="container">
 	<br>
 	<br>
 	<div>
-		<h2> PRODUCTOS DEL CAT¡LOGO </h2>
+		<h2> PRODUCTOS DEL CAT√ÅLOGO </h2>
 		<!-- Example single danger button -->
 		<div class="btn-group">
 			<form style="display: inline" action= "<%= request.getContextPath() %>/CategoriasServlet?Operacion=Filtrar" method= "POST">
@@ -29,7 +30,7 @@
 				  <option value="5">Discos duros</option>		  
 				</select>
 		 <!--   <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-		    Todas las categorÌas
+		    Todas las categor√≠as
 		  </button>
 		  <ul class="dropdown-menu" style="min-width: 11.8rem">
 		    <li><a href="<%= request.getContextPath() %>/CategoriasServlet?Operacion=Filtrar&Categoria=2" class="dropdown-item" href="#">Placas bases</a></li>
@@ -78,12 +79,16 @@
 							          <a href="ProductoServlet?Id=<%= a.getId() %>" style="text-decoration: none; color: black">
 							            <h4 style="text-align: left" "><%= a.getNombre() %></h4>
 							          </a>
-						              <h5><%= a.getDescripcion() %></h5>
-						              <h6><%= a.getPrecio()%>$</h6>
+						              <br>
+						              <div class="d-flex justify-content-between align-items-center">
+							              <h6><%= a.getPrecio()%>$</h6>
+							              <h6><% for (int i = 0; i < a.getValoracion(); i++){ %> <span style="color: #ffc107">‚òÖ </span><%}%><% for (int i = 0; i < 5 - a.getValoracion(); i++){ %> ‚òÖ <%}%></h6>
+							          </div>
+							          
 						              <div class="d-flex justify-content-between align-items-center">
 						                <div class="btn-group">
 			                            <a href="CarritoServlet?id=<%= a.getId() %>&nombre=<%= a.getNombre() %>&operacion=mas&precio=<%= a.getPrecio() %>">
-			                            	<button type="button" class="btn btn-warning">AÒadir</button>
+			                            	<button type="button" class="btn btn-warning">A√±adir</button>
 			                            </a>
 						                </div>
 						                <small class="text-muted">Stock: <%= a.getStock() %></small>
@@ -99,10 +104,10 @@
 	
 	</div>
 	<br><br><br><br><br><br>
-	<!-- Pie de p·gina -->
+	<!-- Pie de p√°gina -->
 	   <footer class="footer fixed-bottom ">
 	        <div >
-	            <h4>2022 © Proyecto Serbatic</h4>
+	            <h4>2022 ¬© Proyecto Serbatic</h4>
 	        </div>
 	    </footer>
 	

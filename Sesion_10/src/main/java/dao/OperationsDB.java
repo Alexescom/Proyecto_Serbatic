@@ -80,11 +80,13 @@ public class OperationsDB {
 					
 					Articulo artic = new Articulo();
 					artic.setId(rs.getInt("id"));
+					artic.setId_categoria(rs.getInt("id_categoria"));
 					artic.setNombre(rs.getString("nombre"));
 					artic.setDescripcion(rs.getString("descripcion"));
 					artic.setPrecio(rs.getFloat("precio"));
 					artic.setStock(rs.getInt("stock"));
 					artic.setBaja(rs.getBoolean("baja"));
+					artic.setValoracion(rs.getInt("valoracion"));
 //					System.out.println("El stock del producto " + rs.getInt("id") + " es: " + rs.getInt("stock"));
 					articulos.add(artic);
 					contador++;
@@ -121,6 +123,7 @@ public class OperationsDB {
 					artic.setDescripcion(rs.getString("descripcion"));
 					artic.setPrecio(rs.getFloat("precio"));
 					artic.setStock(rs.getInt("stock"));
+					artic.setValoracion(rs.getInt("valoracion"));
 //					System.out.println("El stock del producto " + rs.getInt("id") + " es: " + rs.getInt("stock"));
 					articulos.add(artic);
 				}

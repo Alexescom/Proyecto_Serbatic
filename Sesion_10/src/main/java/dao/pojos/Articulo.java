@@ -15,6 +15,7 @@ public class Articulo {
 	private boolean baja;
 	private Date fecha_alta;
 	private double cantidad;
+	private int valoracion;
 
 	
 	//Métodos
@@ -77,6 +78,12 @@ public class Articulo {
 	}
 	public void setFecha_alta(Date fecha_alta) {
 		this.fecha_alta = fecha_alta;
+	}
+	public int getValoracion() {
+		return valoracion;
+	}
+	public void setValoracion(int valoracion) {
+		this.valoracion = valoracion;
 	}
 	
 }

@@ -53,7 +53,6 @@ public class UsuarioServlet extends HttpServlet {
 			//Rellenamos con los datos introducidos
 			 Usuario user = new Usuario();
 			 user.setId((int)request.getSession().getAttribute("Id"));
-			 user.setClave(request.getParameter("Password"));
 			 user.setDni(request.getParameter("Dni"));
 			 user.setNombre(request.getParameter("Nombre"));
 			 user.setApellido1(request.getParameter("Apellido1"));
