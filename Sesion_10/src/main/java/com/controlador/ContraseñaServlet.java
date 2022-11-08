@@ -1,6 +1,8 @@
 package com.controlador;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import Service.DatosUsuario;
 import Service.RecuperarService;
+import dao.OperationsDB;
+import dao.pojos.Articulo;
 import dao.pojos.Usuario;
 
 /**
@@ -15,6 +19,7 @@ import dao.pojos.Usuario;
  */
 public class ContraseñaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+    private static OperationsDB ope =  new OperationsDB();
 
     public ContraseñaServlet() {
         super();
@@ -40,10 +45,24 @@ public class ContraseñaServlet extends HttpServlet {
 			 
 			 //Recogemos datos del usuario de nuevo
 			 Usuario usuario = DatosUsuario.recogerDatosUsuario((int)request.getSession().getAttribute("Id"));
-			 request.setAttribute("Usuario", usuario);
 			 
-			 //Redirigimos
-			 request.getRequestDispatcher("Vistas/Usuario/Perfil.jsp").forward(request, response);
+			 //Ramificamos de forma diferente
+			 if (usuario.getNombre().equals("admin")) {
+				 
+				//Cargamos los artículos que se tienen que mostrar en el catálogo
+				ArrayList <Articulo> articulos = ope.recogerArticulos(0);
+				request.setAttribute("Articulos", articulos);
+				request.getRequestDispatcher("Vistas/Administrador/Productos/ProductosIndex.jsp").forward(request, response);
+				 
+			 }else {
+				 
+				 request.setAttribute("Usuario", usuario);
+				 
+				 //Redirigimos
+				 request.getRequestDispatcher("Vistas/Usuario/Perfil.jsp").forward(request, response);
+				 
+			 }
+
 			
 		}else if (request.getParameter("Operacion").equals("Recuperar")) {
 			
@@ -60,7 +79,7 @@ public class ContraseñaServlet extends HttpServlet {
 				request.getRequestDispatcher("Vistas/Autenticacion/Login.jsp").forward(request, response);
 			}
 			
-			//Redirigimos
+			
 			 
 			
 		}

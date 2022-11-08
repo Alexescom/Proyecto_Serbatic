@@ -21,7 +21,7 @@
 		<!--  Cabecera de la página -->
 		<jsp:include page="../Estaticos/Header2.jsp" />
 	
-	<%} %>
+	<%}%>
 	
 	
 	

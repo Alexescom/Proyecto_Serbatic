@@ -26,7 +26,7 @@ public class OperationsProductosDB {
 	        
 			try {
 				
-				stmt = conexion.prepareStatement("update productos set id_categoria= ?, nombre = ?, descripcion = ?, precio = ?, stock = ?, impuesto = ? where id=?");
+				stmt = conexion.prepareStatement("update productos set id_categoria= ?, nombre = ?, descripcion = ?, precio = ?, stock = ?, impuesto = ? where id=? ");
 				stmt.setInt(1, articulo.getId_categoria());
 				stmt.setString(2, articulo.getNombre());
 				stmt.setString(3, articulo.getDescripcion());

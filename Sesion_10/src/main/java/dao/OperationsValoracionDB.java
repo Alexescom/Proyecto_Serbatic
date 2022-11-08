@@ -26,11 +26,12 @@ public class OperationsValoracionDB {
 			
 			//Insertamos en la base de datos
 			PreparedStatement stmt2;
-			stmt2 = conexion.prepareStatement("insert into valoraciones (id_producto, id_usuario, valoracion, comentario) values (?, ?, ?, ?)");
+			stmt2 = conexion.prepareStatement("insert into valoraciones (id_producto, id_usuario, valoracion, comentario, nombre_usuario) values (?, ?, ?, ?, ?)");
 			stmt2.setInt(1, v.getId_producto());
 			stmt2.setInt(2, v.getId_usuario());
 			stmt2.setInt(3, v.getValoracion());
 			stmt2.setString(4, v.getComentario());
+			stmt2.setString(5, v.getNombre());
 					
 			stmt2.executeUpdate();
 			
@@ -88,6 +89,7 @@ public class OperationsValoracionDB {
 					valoracion.setComentario(rs.getString("comentario"));
 					valoracion.setValoracion(rs.getInt("valoracion"));
 					valoracion.setId_usuario(rs.getInt("id_usuario"));
+					valoracion.setNombre(rs.getString("nombre_usuario"));
 					valoraciones.add(valoracion);
 
 				}

@@ -71,7 +71,7 @@ public class OperationsDB {
 		if (id == 0 ) {
 
 			try {
-				stmt = conexion.prepareStatement("select * from productos");
+				stmt = conexion.prepareStatement("select * from productos where baja = '0'");
 				
 				ResultSet rs = stmt.executeQuery(); 
 				int contador = 0;
@@ -150,7 +150,7 @@ public class OperationsDB {
 		articulos.clear();
         PreparedStatement stmt;
 		try {
-			stmt = conexion.prepareStatement("select * from productos where id_categoria = ?");
+			stmt = conexion.prepareStatement("select * from productos where id_categoria = ? AND baja = '0'");
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery(); 
 			int contador = 0;
@@ -163,6 +163,7 @@ public class OperationsDB {
 				artic.setDescripcion(rs.getString("descripcion"));
 				artic.setPrecio(rs.getFloat("precio"));
 				artic.setStock(rs.getInt("stock"));
+				artic.setValoracion(rs.getInt("valoracion"));
 //				System.out.println("El stock del producto " + rs.getInt("id") + " es: " + rs.getInt("stock"));
 				articulos.add(artic);
 				contador++;
@@ -189,7 +190,7 @@ public class OperationsDB {
 		articulos.clear();
         PreparedStatement stmt;
 		try {
-			stmt = conexion.prepareStatement("select * from productos where nombre LIKE ?");
+			stmt = conexion.prepareStatement("select * from productos where nombre LIKE ? AND baja = '0'");
 			stmt.setString(1,"%" + nombre + "%");
 			ResultSet rs = stmt.executeQuery(); 
 			int contador = 0;
@@ -202,6 +203,7 @@ public class OperationsDB {
 				artic.setDescripcion(rs.getString("descripcion"));
 				artic.setPrecio(rs.getFloat("precio"));
 				artic.setStock(rs.getInt("stock"));
+				artic.setValoracion(rs.getInt("valoracion"));
 //				System.out.println("El stock del producto " + rs.getInt("id") + " es: " + rs.getInt("stock"));
 				articulos.add(artic);
 				contador++;

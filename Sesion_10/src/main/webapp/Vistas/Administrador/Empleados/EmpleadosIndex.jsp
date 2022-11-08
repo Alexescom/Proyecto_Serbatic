@@ -30,7 +30,7 @@
 					</div>
 					<!-- Example single danger button -->
 					<div style="float: right">
-						<a href="<%= request.getContextPath() %>/Vistas/Empleado/Clientes/Insertar.jsp">
+						<a href="<%= request.getContextPath() %>/Vistas/Administrador/Empleados/Insertar.jsp">
 							<button class="btn btn-outline-warning"> Insertar nuevo empleado </button>
 						</a>
 					</div>
@@ -44,7 +44,9 @@
 					        <th style="width: 200px" scope="col">Nombre</th>
 					        <th style="width: 200px" scope="col">Primer apellido</th>
 					        <th style="width: 200px" scope="col">Segundo apellido</th>
+					        <th style="width: 200px" scope="col">Baja</th>
 					        <th style="width: 200px" scope="col">Editar</th>
+					        <th style="width: 200px" scope="col">Eliminar</th>
 					        </tr>
 					      </thead>
 		            <%@page import="java.util.ArrayList" %>
@@ -65,9 +67,15 @@
 				                <td style="vertical-align:middle"><%= a.getNombre() %></td>
 				                <td style="vertical-align:middle"><%= a.getApellido1() %></td>
 				                <td style="vertical-align:middle"><%= a.getApellido2() %></td>
+				                <td style="vertical-align:middle"><%= a.getBaja() %></td>
 				                <td style="vertical-align:middle">
 				                	 <a href="UsuariosServlet?Entidad=Admin&Operacion=VerEmpleado&Id=<%= a.getId() %>">
 		                            	<button type="button" class="btn btn-warning" style="width: 100px;">Editar</button>
+		                            </a>
+				                </td>
+				                <td style="vertical-align:middle">
+				                	 <a href="UsuariosServlet?Entidad=Admin&Operacion=EliminarEmpleado&Id=<%= a.getId() %>">
+		                            	<button type="button" class="btn btn-danger" style="width: 100px;">Eliminar</button>
 		                            </a>
 				                </td>
 

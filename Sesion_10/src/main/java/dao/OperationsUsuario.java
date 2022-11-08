@@ -12,12 +12,13 @@ import org.jasypt.util.password.StrongPasswordEncryptor;
 import Conection.Conexion;
 import dao.pojos.Pedido;
 import dao.pojos.Usuario;
+import extraSources.Mailer;
 
 public class OperationsUsuario {
 	
 	//Variables
 	private static Connection conexion;
-	StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+	static StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
 	
     
     //Métodos
@@ -55,6 +56,27 @@ public class OperationsUsuario {
 			}
 	}
 	
+	public static int recogerAdmin(){
+		
+			conexion = Conexion.getConexion();
+		  	PreparedStatement stmt;
+		  	
+			try {
+				//Contamos 
+				stmt = conexion.prepareStatement("select count(*) from usuarios where nombre = 'admin'");
+				ResultSet rs = stmt.executeQuery();
+				rs.next();
+				return (rs.getInt("count(*)"));
+					
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return 0;
+			}
+	}
+	
+	
     //---------------------------MODIFICAR---------------------------//
 	public boolean modificarUsuario(Usuario user){
 		
@@ -65,15 +87,15 @@ public class OperationsUsuario {
 				
 				stmt = conexion.prepareStatement("update usuarios set email= ?, nombre=?, apellido1=?, apellido2=?, direccion=?, provincia=?, localidad=?, telefono=?, dni=? where id=?");
 				stmt.setString(1, user.getEmail());
-				stmt.setString(3, user.getNombre());
-				stmt.setString(4, user.getApellido1());
-				stmt.setString(5, user.getApellido2());
-				stmt.setString(6, user.getDireccion());
-				stmt.setString(7, user.getProvincia());
-				stmt.setString(8, user.getLocalidad());
-				stmt.setString(9, user.getTelefono());
-				stmt.setString(10, user.getDni());
-				stmt.setInt(11, user.getId());
+				stmt.setString(2, user.getNombre());
+				stmt.setString(3, user.getApellido1());
+				stmt.setString(4, user.getApellido2());
+				stmt.setString(5, user.getDireccion());
+				stmt.setString(6, user.getProvincia());
+				stmt.setString(7, user.getLocalidad());
+				stmt.setString(8, user.getTelefono());
+				stmt.setString(9, user.getDni());
+				stmt.setInt(10, user.getId());
 				
 				int result = stmt.executeUpdate();
 				conexion.commit();
@@ -166,7 +188,7 @@ public class OperationsUsuario {
 	
 	
     //---------------------------INSERTAR---------------------------//
-	public boolean insertarUsuario(Usuario user){
+	public static boolean insertarUsuario(Usuario user){
 		
 			conexion = Conexion.getConexion();
 		  	PreparedStatement stmt;
@@ -176,7 +198,8 @@ public class OperationsUsuario {
 				stmt = conexion.prepareStatement("insert into usuarios (id_rol, email, clave, nombre, apellido1, apellido2, direccion, provincia, localidad, telefono, dni) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 				stmt.setInt(1, user.getId_rol());
 				stmt.setString(2, user.getEmail());
-				stmt.setString(3, user.getClave());
+				String clave = passwordEncryptor.encryptPassword(user.getClave());
+				stmt.setString(3, clave);
 				stmt.setString(4, user.getNombre());
 				stmt.setString(5, user.getApellido1());
 				stmt.setString(6, user.getApellido2());
@@ -189,6 +212,8 @@ public class OperationsUsuario {
 				int result = stmt.executeUpdate();
 				conexion.commit();
 				
+				Mailer.enviarMailInsercion(user);
+				
 //				System.out.println("El email es " + user.getEmail());
 				return true;
 		        
@@ -199,6 +224,32 @@ public class OperationsUsuario {
 			}
 	}
 	
+	public static boolean insertarAdmin(Usuario user){
+		
+		conexion = Conexion.getConexion();
+	  	PreparedStatement stmt;
+        
+		try {
+			
+			stmt = conexion.prepareStatement("insert into usuarios (id_rol, clave, nombre, email) values (?, ?, ?, ?)");
+			stmt.setInt(1, user.getId_rol());
+			String clave = passwordEncryptor.encryptPassword(user.getClave());
+			stmt.setString(2, clave);
+			stmt.setString(3, user.getNombre());
+			stmt.setString(4, user.getEmail());
+			
+			int result = stmt.executeUpdate();
+			conexion.commit();
+			
+//			System.out.println("El email es " + user.getEmail());
+			return true;
+	        
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+}
 	
 	
 }

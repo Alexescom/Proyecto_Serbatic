@@ -174,7 +174,7 @@ public class UsuariosServlet extends HttpServlet {
 				 //Redirigimos
 				 request.getRequestDispatcher("Vistas/Administrador/Empleados/EmpleadosVista.jsp").forward(request, response);
 				 
-			}else { //insertar nuevo usuario empleado
+			}else if (request.getParameter("Operacion").equals("Insertar")) { //insertar nuevo usuario empleado
 				
 				log.info("Inserción de un nuevo usuario empleado en el sistema");
 				
@@ -198,10 +198,101 @@ public class UsuariosServlet extends HttpServlet {
 				 request.setAttribute("Clientes", UsuariosService.recogerUsuarios(3));
 				 request.getRequestDispatcher("Vistas/Administrador/Empleados/EmpleadosIndex.jsp").forward(request, response);
 				
+			} else { //Baja de empleado
+				
+				//Modificamos el usuario en base de datos
+				DatosUsuario.modificarUsuarioBaja(Integer.parseInt(request.getParameter("Id")));
+				
+				//Redireccionamos
+				request.setAttribute("Clientes", UsuariosService.recogerUsuarios(3));
+				request.getRequestDispatcher("Vistas/Administrador/Empleados/EmpleadosIndex.jsp").forward(request, response); 
+				
+				
 			}
 			
+		//FUNCIONES DEL SUPER-ADMINISTRADOR
+		}else if (request.getParameter("Entidad").equals("SuperAdmin")) { //Recoger usuarios administrador
+			
+			if (request.getParameter("Operacion").equals("IndexAdministradores")) {
+				
+				log.info("Recogemos todos los usuarios del sistema con el rol: 'Administrador'");
+				request.setAttribute("Clientes", UsuariosService.recogerUsuarios(2));
+				request.getRequestDispatcher("Vistas/Administrador/Administradores/AdministradoresIndex.jsp").forward(request, response); 
+				
+			}else if (request.getParameter("Operacion").equals("VerAdministrador")) {
+				
+				log.info("Visualización de los datos del usuario a modificar con el rol: 'Administrador';  id: '"+ request.getParameter("Id") +"'");
+				Usuario user = DatosUsuario.recogerDatosUsuario(Integer.parseInt(request.getParameter("Id")));
+				request.setAttribute("Usuario", user);
+				request.getRequestDispatcher("Vistas/Administrador/Administradores/AdministradoresVista.jsp").forward(request, response); 				
+				
+			}else if (request.getParameter("Operacion").equals("Modificar")) {
+				
+				log.info("Modificación de los datos del usuario con el rol: 'Administrador';  id: '"+ request.getParameter("Id") +"'");
+				
+				//Rellenamos con los datos introducidos
+				 Usuario user = new Usuario();
+				 user.setId(Integer.parseInt(request.getParameter("Id")));
+				 user.setClave(request.getParameter("Password"));
+				 user.setDni(request.getParameter("Dni"));
+				 user.setNombre(request.getParameter("Nombre"));
+				 user.setApellido1(request.getParameter("Apellido1"));
+				 user.setApellido2(request.getParameter("Apellido2"));
+				 user.setDireccion(request.getParameter("Direccion"));
+				 user.setProvincia(request.getParameter("Provincia"));
+				 user.setLocalidad(request.getParameter("Localidad"));
+				 user.setTelefono(request.getParameter("Telefono"));
+	
+				 user.setEmail(request.getParameter("Email"));
+				
+				 //Modificamos el usuario en base de datos
+				 DatosUsuario.modificarUsuario(user);
+				 
+				 //Recogemos datos del usuario de nuevo
+				 user = DatosUsuario.recogerDatosUsuario(Integer.parseInt(request.getParameter("Id")));
+				 request.setAttribute("Usuario", user);
+				 
+				 //Redirigimos
+				 request.getRequestDispatcher("Vistas/Administrador/Administradores/AdministradoresVista.jsp").forward(request, response);
+				 
+			}else if (request.getParameter("Operacion").equals("Insertar")) { //insertar nuevo usuario empleado
+				
+				log.info("Inserción de un nuevo usuario empleado en el sistema");
+				
+				//Rellenamos con los datos introducidos
+				 Usuario user = new Usuario();				
+				 user.setClave(request.getParameter("Password"));
+				 user.setDni(request.getParameter("Dni"));
+				 user.setNombre(request.getParameter("Nombre"));
+				 user.setApellido1(request.getParameter("Apellido1"));
+				 user.setApellido2(request.getParameter("Apellido2"));
+				 user.setDireccion(request.getParameter("Direccion"));
+				 user.setProvincia(request.getParameter("Provincia"));
+				 user.setLocalidad(request.getParameter("Localidad"));
+				 user.setTelefono(request.getParameter("Telefono"));
+				 user.setEmail(request.getParameter("Email"));
+				 user.setId_rol(2);
+				 //Insertamos al usuario en la base de datos
+				 DatosUsuario.insertarUsuario(user);
+				 
+				 //Redirigimos
+				 request.setAttribute("Clientes", UsuariosService.recogerUsuarios(2));
+				 request.getRequestDispatcher("Vistas/Administrador/Administradores/AdministradoresIndex.jsp").forward(request, response);
+				
+			} else { //Baja de administrador
+				
+				//Modificamos el usuario en base de datos
+				DatosUsuario.modificarUsuarioBaja(Integer.parseInt(request.getParameter("Id")));
+				
+				//Redireccionamos
+				request.setAttribute("Clientes", UsuariosService.recogerUsuarios(2));
+				request.getRequestDispatcher("Vistas/Administrador/Administradores/AdministradoresIndex.jsp").forward(request, response); 
+				
+				
+			}
+				
+				
 		}
-		
 	}
 
 

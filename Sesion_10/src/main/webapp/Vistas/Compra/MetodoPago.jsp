@@ -49,13 +49,42 @@
 	            <%}%>
           
             <li class="list-group-item d-flex justify-content-between">
-              <span>Total (USD)</span>
+              <span>Total </span>
               <strong><%= df.format(request.getAttribute("Total")) %>$</strong>
             </li>
+            
+             <%
+               		if(request.getAttribute("Descuento") != null){
+             %>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Descuento </span>
+              <strong>-<%= df.format(request.getAttribute("Descuento")) %>$</strong>
+            </li>
+            
+            <%}%>
           </ul>
 
-
+		  <form class="card p-2" action= "<%= request.getContextPath() %>/DescuentosServlet">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Código de promoción" name="Codigo">
+              <input type="text" class="form-control" value="Cliente" style="display:none" name="Entidad">
+              <input type="text" class="form-control" value="Aplicar" style="display:none" name="Operacion">
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-secondary">Aplicar</button>
+              </div>
+            </div>
+          </form>
+          
+               <%
+               		if(request.getAttribute("mensaje") != null){
+               %>
+               		<br><center><p style="color: red"><%=request.getAttribute("mensaje") %></p></center>
+               <%} %>
+               
         </div>
+        
+
+        
         <div class="col-md-8 order-md-1">
           <h4 class="mb-3">Dirección de envio</h4>
           <form class="needs-validation" novalidate="">
@@ -111,7 +140,7 @@
                 </div>
               </div>
               <div class="col-md-6 mb-3">
-                <label for="cc-number">Númerod e tarjeta</label>
+                <label for="cc-number">Número de tarjeta</label>
                 <input type="text" class="form-control" id="cc-number" placeholder="" required="">
                 <div class="invalid-feedback">
                   Credit card number is required
@@ -120,7 +149,7 @@
             </div>
             <div class="row">
               <div class="col-md-3 mb-3">
-                <label for="cc-expiration">Expiration</label>
+                <label for="cc-expiration">Expiración</label>
                 <input type="text" class="form-control" id="cc-expiration" placeholder="" required="">
                 <div class="invalid-feedback">
                   Expiration date required
@@ -134,13 +163,24 @@
                 </div>
               </div>
             </div>
+            <%if(request.getAttribute("Descuento") == null){%>
             <a href="CompraServlet?Operacion=Comprar" style="text-decoration: none; color: black">
             	<button type="button" class="btn btn-warning" style="width: 150px; height: 50px">Comprar</button>
             </a>
+            <%} else { 
+            	Float descuento = (float)(request.getAttribute("Descuento"));
+            	
+            %>
+            <a href="CompraServlet?Operacion=Comprar&Descuento=<%= descuento %>" style="text-decoration: none; color: black">
+            	<button type="button" class="btn btn-warning" style="width: 150px; height: 50px">Comprar</button>
+            	
+            </a>
+            <%} %>
         </div>
       </div>
 
     </div>
+	
 	
 	
 	

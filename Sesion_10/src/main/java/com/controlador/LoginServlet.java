@@ -67,6 +67,7 @@ public class LoginServlet extends HttpServlet {
 						request.getSession().setAttribute("usuario", usuario);
 						request.getSession().setAttribute("Email", ope.emailUsuario);
 						request.getSession().setAttribute("Id", ope.idUsuario);
+						request.getSession().setAttribute("Id_rol", ope.idRol);
 						request.getRequestDispatcher("Vistas/lista.jsp").forward(request, response); //Interno						
 						
 					}else if (ope.idRol == 3) { //Usuario empleado
@@ -75,28 +76,53 @@ public class LoginServlet extends HttpServlet {
 						request.getSession().setAttribute("usuario", usuario);
 						request.getSession().setAttribute("Email", ope.emailUsuario);
 						request.getSession().setAttribute("Id", ope.idUsuario);
+						request.getSession().setAttribute("Id_rol", ope.idRol);
 						//Cargamos los artículos que se tienen que mostrar en el catálogo
 						ArrayList <Articulo> articulos = ope.recogerArticulos(0);
 						request.setAttribute("Articulos", articulos);
 						request.getRequestDispatcher("Vistas/Empleado/Productos/ProductosIndex.jsp").forward(request, response); //Interno	
 						
-					}else { //Usuario administrador
+					}else if (ope.idRol == 2) { //Usuario administrador
 						
 						request.setAttribute("mensaje", "");
 						request.getSession().setAttribute("usuario", usuario);
 						request.getSession().setAttribute("Email", ope.emailUsuario);
 						request.getSession().setAttribute("Id", ope.idUsuario);
+						request.getSession().setAttribute("Id_rol", ope.idRol);
 						//Cargamos los artículos que se tienen que mostrar en el catálogo
 						ArrayList <Articulo> articulos = ope.recogerArticulos(0);
 						request.setAttribute("Articulos", articulos);
 						request.getRequestDispatcher("Vistas/Administrador/Productos/ProductosIndex.jsp").forward(request, response);
 						
+					}else { //Usuario superAdmin
+						System.out.println(password);
+						//Comprobamos la contraseña
+						if (password.equals("admin")) { //Cambiar contraseña, primer inicio de sesión del admin
+							
+							 request.getSession().setAttribute("usuario", usuario);
+							 request.getSession().setAttribute("Email", ope.emailUsuario);
+							 request.getSession().setAttribute("Id", ope.idUsuario);
+							 request.getSession().setAttribute("Id_rol", ope.idRol);
+							
+							 //Redirigimos
+							 request.getRequestDispatcher("Vistas/Usuario/Contraseña.jsp").forward(request, response);
+							
+						} else { //Redirigimos a la sección de super admin
+							
+							request.getSession().setAttribute("usuario", usuario);
+							request.getSession().setAttribute("Email", ope.emailUsuario);
+							request.getSession().setAttribute("Id", ope.idUsuario);
+							request.getSession().setAttribute("Id_rol", ope.idRol);
+							//Cargamos los artículos que se tienen que mostrar en el catálogo
+							ArrayList <Articulo> articulos = ope.recogerArticulos(0);
+							request.setAttribute("Articulos", articulos);
+							request.getRequestDispatcher("Vistas/Administrador/Productos/ProductosIndex.jsp").forward(request, response);
+						}
+					
 					}
 
-				
 				}
 			}
-
 	}
 
 	/**

@@ -35,6 +35,7 @@ public class ValoracionServlet extends HttpServlet {
 		valoracion.setComentario(request.getParameter("Comentario"));
 		valoracion.setId_producto(Integer.parseInt(request.getParameter("Id_producto")));
 		valoracion.setId_usuario((int)request.getSession().getAttribute("Id"));
+		valoracion.setNombre((String)request.getSession().getAttribute("usuario"));
 		String valor = request.getParameter("estrellas"+valoracion.getId_producto());
 		if (valor != null) {
 			if (valor.equals("5")) { //5 estrellas

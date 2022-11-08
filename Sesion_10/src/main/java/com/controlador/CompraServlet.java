@@ -77,12 +77,22 @@ public class CompraServlet extends HttpServlet {
 					
 					//Rellenamos el pedido
 					Pedido pedido = new Pedido();
-					pedido.setId_usuario(44);
+					pedido.setId_usuario((int)request.getSession().getAttribute("Id"));
 					pedido.setFecha(new Date());
 					pedido.setMetodo_pago("Tarjeta");
 					pedido.setEstado("PE");
-					pedido.setTotal(precioTotal);
 					
+					if (request.getParameter("Descuento") == null ) {
+						System.out.println("Descuento igual a null");
+						pedido.setTotal(precioTotal);
+					}else {
+						System.out.println("Descuento diferente de null");
+						System.out.println(request.getParameter("Descuento"));
+						precioTotal -= Float.parseFloat(request.getParameter("Descuento"));
+						System.out.println(precioTotal);
+						pedido.setTotal(precioTotal);
+						
+					}
 					//Obtenemos el número de factura obtenido
 					int numPedido = InsertadorPedido.insertarPedido(pedido);
 					
@@ -93,7 +103,7 @@ public class CompraServlet extends HttpServlet {
 					
 					request.getSession().setAttribute("Carro", null);
 					request.getSession().setAttribute("Acumulador", 0);
-					request.setAttribute("Total", precioTotal);
+					request.setAttribute("Total", pedido.getTotal());
 					request.getRequestDispatcher("Vistas/Compra/Compra.jsp").forward(request, response);
 				}
 				

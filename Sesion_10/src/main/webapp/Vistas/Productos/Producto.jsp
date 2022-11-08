@@ -50,10 +50,11 @@
 
 		            	<div class="col col-md  p-3 m-5" >
 		            		<h1 style="text-align:justify"><%= a.getNombre()%></h1>
-		            		<h3 style="text-align:justify">Descripción del producto: <%= a.getDescripcion()%></h2>
-							<br><br><br>
+		            		<br><br><br><br><br><br><br><br><br><br><br><br>
+		            		<h3 style="text-align:justify;font-size:100%"><b>Descripción del producto:</b> <%= a.getDescripcion()%></h2>
+							<br>
 						    <div class="d-flex justify-content-between">
-						    	<h3>Precio: <%= a.getPrecio()%></h3>
+						    	<h3>Precio: <%= a.getPrecio()%>$</h3>
 						    
 			                   <a href="CarritoServlet?id=<%= a.getId() %>&nombre=<%= a.getNombre() %>&operacion=mas&precio=<%= a.getPrecio() %>">
 			                      <button type="button" class="btn btn-warning">Añadir</button>
@@ -74,7 +75,7 @@
                 if (valoraciones != null){
             		for (Valoracion v: valoraciones){%>
 					<div class="col col-md-5 bg-light  p-2 m-5 rounded border">
-						<h2>Usuario: <%= v.getId_usuario() %></h2>
+						<h2>Usuario: <%= v.getNombre() %></h2>
 						<h3>Comentario: <%= v.getComentario() %></h3>
 						<h6>Valoracion:<% for (int i = 0; i < v.getValoracion(); i++){ %> <span style="color: #ffc107">★ </span><%}%><% for (int i = 0; i < 5 - v.getValoracion(); i++){ %> ★ <%}%></h6>
 					

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Service.AdminService;
 import Service.Ordenacion;
 import dao.pojos.Articulo;
 import dao.pojos.Detalle;
@@ -47,10 +48,12 @@ public class IndexServlet extends HttpServlet {
 		    ArrayList <Detalle> car = new ArrayList<Detalle>();
 			request.getSession().setAttribute("Carro", car);
 			
-			//ARRANCAMOS EL HILO CONTADOR
+			//ARRANCAMOS EL HILO CONTADOR - P32
 //			hiloPedidos.start();
 //			hiloPedidos.parar();
 			
+			//CREAR ADMIN AL DESPLEGAR - P45
+			AdminService.crearAdmin();
 
 			
 		}else if (request.getSession().getAttribute("Carro") != null) {//Miramos a ver si tenemos que contar productos del carrito

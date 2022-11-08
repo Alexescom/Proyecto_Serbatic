@@ -11,6 +11,7 @@ public class Valoracion {
 	private int valoracion;
 	private String comentario;
 	private Date fecha;
+	private String nombre;
 
 	//Métodos
 	public int getId() {
@@ -49,7 +50,13 @@ public class Valoracion {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-
+	
 
 }

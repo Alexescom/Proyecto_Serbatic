@@ -103,7 +103,7 @@
                                 <div class="col-md-12 overflow-hidden  float-right">
                                 	<div class="row justify-content-md-center">
                                 		<div class="col-6">
-                                    		<h6 class="text-right">Si desea editar los datos: </h6>
+                                    		<h6 class="text-right">Si desea editar insertar el producto: </h6>
                                   		</div>
 										<div class="col-6  m-auto" >
                                     		  <button type="submit" class="btn btn-warning btn-sm" style= "width:80px" >
