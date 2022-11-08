@@ -16,6 +16,7 @@ public class Articulo {
 	private Date fecha_alta;
 	private double cantidad;
 	private int valoracion;
+	private String imagen;
 
 	
 	//Métodos
@@ -84,6 +85,12 @@ public class Articulo {
 	}
 	public void setValoracion(int valoracion) {
 		this.valoracion = valoracion;
+	}
+	public String getImagen() {
+		return imagen;
+	}
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 	
 }

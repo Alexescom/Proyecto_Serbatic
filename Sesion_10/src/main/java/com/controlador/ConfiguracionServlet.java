@@ -47,6 +47,9 @@ public class ConfiguracionServlet extends HttpServlet {
 			Configuracion c = new Configuracion();
 			Configuracion c1 = new Configuracion();
 			Configuracion c2 = new Configuracion();
+			Configuracion c3 = new Configuracion();
+			Configuracion c4 = new Configuracion();
+			Configuracion c5 = new Configuracion();
 			
 			//Map<String,String[]> mapaParam = request.getParameterMap();
 			
@@ -63,6 +66,18 @@ public class ConfiguracionServlet extends HttpServlet {
 			c2.setClave("prefijo");
 			c2.setValor(request.getParameter("prefijo"));
 			config.add(c2);
+			
+			c3.setClave("nombre");
+			c3.setValor(request.getParameter("nombre"));
+			config.add(c3);
+			
+			c4.setClave("cif");
+			c4.setValor(request.getParameter("cif"));
+			config.add(c4);
+			
+			c5.setClave("direccion");
+			c5.setValor(request.getParameter("direccion"));
+			config.add(c5);
 			
 			//Modificamos los valores en base de datos
 			ConfiguracionService.setConfiguracion(config);

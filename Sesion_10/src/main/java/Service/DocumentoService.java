@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
@@ -17,6 +18,8 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+
+import dao.pojos.Configuracion;
 import dao.pojos.Detalle;
 import dao.pojos.Pedido;
 import extraSources.PDFHeaderFooter;
@@ -29,6 +32,10 @@ public class DocumentoService {
 		Document documento = new Document(PageSize.A4, 20, 20, 70, 50);
 		
 		try {
+			
+			//Cogemos la información de la empresa de la base de datos
+			List <Configuracion> configuracion = ConfiguracionService.getConfiguracion();
+			
 			//Instancia del archivo
 			String nombre = p.getNum_factura() + "factura.pdf";
 			writer = PdfWriter.getInstance(documento, new FileOutputStream(nombre));
@@ -56,7 +63,13 @@ public class DocumentoService {
 			Paragraph para2 = new Paragraph();
 			tamanno = 12;
 			para2.add("\n\n");
+			para2.add("Nombre de la empresa: " + configuracion.get(3).getValor());
+			para2.add("\n\n");
 			para2.setFont(new Font(FontFactory.getFont("Sans", tamanno , Font.NORMAL, BaseColor.BLACK)));
+			para2.add("Dirección empresa: "+  configuracion.get(5).getValor());
+			para2.add("\n\n");
+			para2.add("CIF/NIF: " + configuracion.get(4).getValor());
+			para2.add("\n\n");
 			para2.add("Información del pedido: ");
 			para2.add("\n\n");
 			documento.add(para2);

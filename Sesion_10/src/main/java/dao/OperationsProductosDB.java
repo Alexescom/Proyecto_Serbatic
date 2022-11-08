@@ -79,7 +79,7 @@ public class OperationsProductosDB {
 	        
 			try {
 				
-				stmt = conexion.prepareStatement("insert into productos (id_categoria, nombre, descripcion, precio, stock, fecha_alta, impuesto) values (?,?,?,?,?,?,?)");
+				stmt = conexion.prepareStatement("insert into productos (id_categoria, nombre, descripcion, precio, stock, fecha_alta, impuesto, imagen) values (?,?,?,?,?,?,?,?)");
 				stmt.setInt(1, articulo.getId_categoria());
 				stmt.setString(2, articulo.getNombre());
 				stmt.setString(3, articulo.getDescripcion());
@@ -87,6 +87,7 @@ public class OperationsProductosDB {
 				stmt.setInt(5, articulo.getStock());
 				stmt.setDate(6, new Date(new java.util.Date().getTime()));
 				stmt.setFloat(7, articulo.getImpuesto());
+				stmt.setString(8, articulo.getImagen());
 				
 				int result = stmt.executeUpdate();
 				conexion.commit();

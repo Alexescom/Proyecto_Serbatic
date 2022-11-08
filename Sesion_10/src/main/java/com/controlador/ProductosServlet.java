@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import Service.DatosUsuario;
 import Service.ExportarService;
@@ -20,6 +22,7 @@ import dao.pojos.Usuario;
 /**
  * Servlet implementation class ProductosServlet
  */
+@MultipartConfig
 public class ProductosServlet extends HttpServlet {
 	
 	//Variables
@@ -76,6 +79,7 @@ public class ProductosServlet extends HttpServlet {
 				
 			}else if (request.getParameter("Operacion").equals("Insertar")) { //insertar nuevo producto
 				
+
 				//Rellenamos con los datos introducidos
 				 Articulo articulo = new Articulo();
 				 articulo.setId_categoria(Integer.parseInt(request.getParameter("Id_categoria")));
@@ -85,13 +89,24 @@ public class ProductosServlet extends HttpServlet {
 				 articulo.setStock(Integer.parseInt(request.getParameter("Stock")));
 				 articulo.setImpuesto(Float.parseFloat(request.getParameter("Impuesto")));
 				 
+				 
+				 //Cargamos la imagen
+				 Part filePart = request.getPart("Imagen"); 
+				 String fileName = filePart.getSubmittedFileName();
+				 for (Part part : request.getParts()) {
+				      part.write("F:\\Ale\\Formaciones\\Sesion_10\\src\\main\\webapp\\Sources\\Imagenes\\Productos\\" + fileName);
+				 }
+				 response.getWriter().print("The file uploaded sucessfully.");
+				 articulo.setImagen(fileName);
+				 
 				 //Insertamos el producto en la base de datos
 				 ProductosService.insertarProducto(articulo);
 				 
+				 
 				 //Redirigimos 
-				ArrayList <Articulo> articulos = ope.recogerArticulos(0);
-				request.setAttribute("Articulos", articulos);
-				request.getRequestDispatcher("Vistas/Empleado/Productos/ProductosIndex.jsp").forward(request, response);
+				 ArrayList <Articulo> articulos = ope.recogerArticulos(0);
+				 request.setAttribute("Articulos", articulos);
+				 request.getRequestDispatcher("Vistas/Empleado/Productos/ProductosIndex.jsp").forward(request, response);
 				
 			} else if (request.getParameter("Operacion").equals("Exportar")) {
 				
@@ -127,8 +142,16 @@ public class ProductosServlet extends HttpServlet {
 				
 			}else if (request.getParameter("Operacion").equals("Importar")) { //Importar productos
 				
+				 //Cargamos la imagen
+				 Part filePart = request.getPart("Archivo"); 
+				 String fileName = filePart.getSubmittedFileName();
+				 for (Part part : request.getParts()) {
+				      part.write("F:\\Ale\\Formaciones\\Sesion_10\\src\\main\\webapp\\Sources\\Ficheros\\Importar\\" + fileName);
+				 }
+				 response.getWriter().print("The file uploaded sucessfully.");
+				
 				//Importamos los productos
-				ExportarService.importarProductos();
+				ExportarService.importarProductos(fileName);
 				
 				//Cargamos los artículos que se tienen que mostrar en el catálogo
 				ArrayList <Articulo> articulos = ope.recogerArticulos(0);
@@ -146,6 +169,9 @@ public class ProductosServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		
+		
 		doGet(request, response);
 	}
 

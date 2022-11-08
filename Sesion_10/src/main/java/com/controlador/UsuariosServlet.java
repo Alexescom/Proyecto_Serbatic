@@ -34,7 +34,7 @@ public class UsuariosServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		PropertyConfigurator.configure("./log4j.properties");
+		PropertyConfigurator.configure("F:\\Ale\\Formaciones\\Sesion_10\\src\\main\\java\\log4j.properties");
 		
 		//FUNCIONES EMPLEADO
 		if (request.getParameter("Entidad").equals("Empleado")) { //Recoger usuarios empleado

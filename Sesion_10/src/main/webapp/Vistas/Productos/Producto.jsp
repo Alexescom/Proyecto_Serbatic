@@ -44,7 +44,7 @@
 		            		for (Articulo a: detalles){%>
 	
 		            	<div class="bg-light  p-3 m-5 rounded border border-2" style="margin-top: 25px; boder:1px">
-		            			<img class="bd-placeholder-img card-img-top " width="100%" height="600" src="<%= request.getContextPath() %>/Sources/Imagenes/Productos/<%= a.getId() %>.jpg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"></img>
+		            			<img class="bd-placeholder-img card-img-top " width="100%" height="600" src="<%= request.getContextPath() %>/Sources/Imagenes/Productos/<%= a.getImagen() %>" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"></img>
 						</div>
 
 

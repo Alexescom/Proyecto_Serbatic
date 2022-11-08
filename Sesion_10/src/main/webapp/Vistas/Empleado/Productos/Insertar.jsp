@@ -28,7 +28,7 @@
 		<br>
 
                          <div class="bg-light col-md-8 mx-auto overflow-auto p-3 rounded border border-3"  >
-                          <form id="form" class="card card-body my-auto" action= "<%= request.getContextPath() %>/ProductosServlet?Entidad=Empleado&Operacion=Insertar" method= "POST" >
+                          <form id="form" class="card card-body my-auto" action= "<%= request.getContextPath() %>/ProductosServlet?Entidad=Empleado&Operacion=Insertar" method= "POST" enctype="multipart/form-data">
 
                               <div class="col-12  border-right" >
                                 <h3 class="text-center"> Información del producto:</h3>
@@ -98,7 +98,18 @@
                                     		<input class="text" style="color:grey;"  name="Impuesto"></input>
                                   		</div>
                                 	</div>
-                                </div>                              
+                                </div>
+                                <br><br>
+                                <div class="col-md-12 overflow-hidden  float-right">
+                                	<div class="row justify-content-md-center">
+                                		<div class="col-6">
+                                    		<h6 class="text-right"> &#11166 &nbsp Imagen:</h6>
+                                  		</div>
+										<div class="col-6  m-auto" >
+                                    		<input class="text" type="file" style="color:grey;" accept="image/png, image/jpeg" name="Imagen"></input>
+                                  		</div>
+                                	</div>
+                                </div>                                 
                                 <br><br>
                                 <div class="col-md-12 overflow-hidden  float-right">
                                 	<div class="row justify-content-md-center">

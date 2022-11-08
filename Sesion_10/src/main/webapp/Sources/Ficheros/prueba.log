@@ -1,0 +1,2 @@
+20:07:11,164  INFO UsuariosServlet:115 - Acción realizada por el administrador
+20:07:11,164  INFO UsuariosServlet:137 - Recogemos todos los usuarios del sistema con el rol: 'Empleado'

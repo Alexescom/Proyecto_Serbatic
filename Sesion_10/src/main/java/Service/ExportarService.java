@@ -18,7 +18,7 @@ public class ExportarService {
 	//Métodos
 	public static void exportarProductos(ArrayList<Articulo> articulos) {
 		
-		File fichero = new File("./Articulos.xls");
+		File fichero = new File("F:\\Ale\\Formaciones\\Sesion_10\\src\\main\\webapp\\Sources\\Ficheros\\Exportar\\articulos.xls");
 		
         try {
         	int i = 1;
@@ -87,9 +87,9 @@ public class ExportarService {
 		
 	}
 	
-	public static void importarProductos() {
+	public static void importarProductos(String filename) {
 		
-		File fichero = new File("./nueva.xls");
+		File fichero = new File("F:\\Ale\\Formaciones\\Sesion_10\\src\\main\\webapp\\Sources\\Ficheros\\Importar\\" + filename);
 		ArrayList <Articulo> articulos = new ArrayList<Articulo>();
 		
         try {

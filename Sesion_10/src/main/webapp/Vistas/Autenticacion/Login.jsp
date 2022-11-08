@@ -29,11 +29,18 @@
                        <input type="text" class="form-control" id="usuario" name = "usuario">
                    </div>
                </div>
+<!--                <div class="mb-3 row"> -->
+<!--                    <label for="inputPassword" class="col-sm-3 col-form-label">Contraseña</label> -->
+<!--                    <div class="col-sm-7 "> -->
+<!--                        <input type="password" class="form-control" id="contraseña" name ="password"> -->
+<!--                        	<button class="btn btn-secundary" type="button" id="button-addon2" style="margin-left:330px;margin-top: -67px"><i class="far fa-eye" id="togglePassword"></i></button> -->
+<!--                    </div> -->
+<!--                </div> -->
                <div class="mb-3 row">
                    <label for="inputPassword" class="col-sm-3 col-form-label">Contraseña</label>
                    <div class="col-sm-7 ">
                        <input type="password" class="form-control" id="contraseña" name ="password">
-                       	<button class="btn btn-secundary" type="button" id="button-addon2" style="margin-left:330px;margin-top: -67px"><i class="far fa-eye" id="togglePassword"></i></button>
+                       	<button class="btn btn-secundary" type="button" id="button-addon2" style="margin-left:230px;margin-top: -67px"><i class="far fa-eye" id="togglePassword"></i></button>
                    </div>
                </div>
 				<br>

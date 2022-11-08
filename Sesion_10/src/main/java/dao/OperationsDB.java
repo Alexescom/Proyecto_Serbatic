@@ -87,6 +87,7 @@ public class OperationsDB {
 					artic.setStock(rs.getInt("stock"));
 					artic.setBaja(rs.getBoolean("baja"));
 					artic.setValoracion(rs.getInt("valoracion"));
+					artic.setImagen(rs.getString("imagen"));
 //					System.out.println("El stock del producto " + rs.getInt("id") + " es: " + rs.getInt("stock"));
 					articulos.add(artic);
 					contador++;
@@ -124,6 +125,7 @@ public class OperationsDB {
 					artic.setPrecio(rs.getFloat("precio"));
 					artic.setStock(rs.getInt("stock"));
 					artic.setValoracion(rs.getInt("valoracion"));
+					artic.setImagen(rs.getString("imagen"));
 //					System.out.println("El stock del producto " + rs.getInt("id") + " es: " + rs.getInt("stock"));
 					articulos.add(artic);
 				}
@@ -164,6 +166,7 @@ public class OperationsDB {
 				artic.setPrecio(rs.getFloat("precio"));
 				artic.setStock(rs.getInt("stock"));
 				artic.setValoracion(rs.getInt("valoracion"));
+				artic.setImagen(rs.getString("imagen"));
 //				System.out.println("El stock del producto " + rs.getInt("id") + " es: " + rs.getInt("stock"));
 				articulos.add(artic);
 				contador++;
@@ -204,6 +207,7 @@ public class OperationsDB {
 				artic.setPrecio(rs.getFloat("precio"));
 				artic.setStock(rs.getInt("stock"));
 				artic.setValoracion(rs.getInt("valoracion"));
+				artic.setImagen(rs.getString("imagen"));
 //				System.out.println("El stock del producto " + rs.getInt("id") + " es: " + rs.getInt("stock"));
 				articulos.add(artic);
 				contador++;
