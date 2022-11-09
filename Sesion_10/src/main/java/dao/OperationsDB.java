@@ -21,6 +21,7 @@ public class OperationsDB {
 	public static int idUsuario;
 	public static String emailUsuario;
 	public static int idRol;
+	public static String imagen;
 	StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
 	
 	//Métodos
@@ -31,7 +32,7 @@ public class OperationsDB {
 //		System.out.println(passwordEncryptor.encryptPassword("1234"));
         PreparedStatement stmt;
 		try {
-			stmt = conexion.prepareStatement("select clave,id,email,id_rol from usuarios where nombre = ? ");
+			stmt = conexion.prepareStatement("select clave,id,email,id_rol,imagen from usuarios where nombre = ? ");
 			//stmt.setString(1, ""+nombre+"");
 			stmt.setString(1, nombre);
 			ResultSet rs = stmt.executeQuery(); 
@@ -42,6 +43,7 @@ public class OperationsDB {
 				idUsuario = rs.getInt("id");
 				emailUsuario = rs.getString("email");
 				idRol = rs.getInt("id_rol");
+				imagen = rs.getString("imagen");
 				if (passwordEncryptor.checkPassword(contraseña, contraseñaC)) {
 					
 					//Enviamos correo

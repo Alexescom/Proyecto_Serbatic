@@ -39,7 +39,7 @@
                                 <div class="col-md-12 overflow-hidden  float-right">
                                 	<div class="row justify-content-md-center">
                                 		<div class="col-6">
-                                    		<h6 class="text-right"> &#11166 &nbsp Imagen:</h6>
+                                    		<h6 class="text-right"> &#11166 &nbsp Archivo (xls):</h6>
                                   		</div>
 										<div class="col-6  m-auto" >
                                     		<input class="text" type="file" style="color:grey;" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" name="Archivo"></input>

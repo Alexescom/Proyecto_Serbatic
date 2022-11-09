@@ -64,7 +64,7 @@
 				                <td style="vertical-align:middle"><%= a.isBaja() %></td>
 				                <td style="vertical-align:middle">
 				                	 <a href="ProductosServlet?Entidad=Admin&Operacion=Eliminar&Id=<%= a.getId() %>">
-		                            	<button type="button" class="btn btn-danger" style="width: 100px;">Eliminar</button>
+		                            	<button type="button" class="btn btn-danger" onClick="confirmarAccion()" style="width: 100px;">Eliminar</button>
 		                            </a>
 				                </td>
 
@@ -123,8 +123,21 @@
           }
         }
       });
+      
     </script>
-  
+    	<script>
+		const confirmarAccion = async () =>{
+			
+			if (confirm("¿Estás seguro de que desea eliminarlo?") == true) {
+				
+			}else{
+				
+			}
+			 
+		 }
+		
+
+	</script>
 
 </body>
 </html>

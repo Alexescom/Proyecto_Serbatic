@@ -16,6 +16,7 @@ public class Usuario {
 	String localidad;
 	String telefono;
 	String dni;
+	String imagen;
 	
 	//Métodos
 	public int getId() {
@@ -96,5 +97,12 @@ public class Usuario {
 	public void setDni(String dni) {
 		this.dni = dni;
 	}
+	public String getImagen() {
+		return imagen;
+	}
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+	
 	
 }

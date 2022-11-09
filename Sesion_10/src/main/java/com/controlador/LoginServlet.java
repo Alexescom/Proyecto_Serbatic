@@ -68,6 +68,7 @@ public class LoginServlet extends HttpServlet {
 						request.getSession().setAttribute("Email", ope.emailUsuario);
 						request.getSession().setAttribute("Id", ope.idUsuario);
 						request.getSession().setAttribute("Id_rol", ope.idRol);
+						request.getSession().setAttribute("Imagen", ope.imagen);
 						request.getRequestDispatcher("Vistas/lista.jsp").forward(request, response); //Interno						
 						
 					}else if (ope.idRol == 3) { //Usuario empleado

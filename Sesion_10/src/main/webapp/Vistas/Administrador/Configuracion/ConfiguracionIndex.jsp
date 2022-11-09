@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -17,11 +17,11 @@
   <style type="text/css">/* Chart.js */
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
 <body>
-		<!--  Cabecera de la página -->
+		<!--  Cabecera de la pÃ¡gina -->
 		<jsp:include page="../../Estaticos/Header3.jsp" />
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4"><div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-					<!-- Sección central -->
+					<!-- SecciÃ³n central -->
 					<div class="container">
 				
 						<br>
@@ -29,7 +29,7 @@
                          <div class="bg-light col-md-8 mx-auto overflow-auto p-3 rounded border border-3"  >
                           <form id="form" class="card card-body my-auto" action= "<%= request.getContextPath() %>/ConfiguracionServlet?Operacion=Modificar" method= "POST" >
 							<div class="col-12  border-right" >
-                                <h3 class="text-center"> Configuración del sistema:</h3>
+                                <h3 class="text-center"> ConfiguraciÃ³n del sistema:</h3>
                                 <hr class="mb-12">
                                 <br></br>
 

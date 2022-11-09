@@ -34,6 +34,7 @@
 					        <th style="width: 200px" scope="col">Nombre</th>
 					        <th style="width: 200px" scope="col">Teléfono</th>
 					        <th style="width: 200px" scope="col">CIF</th>
+					        <th style="width: 200px" scope="col">Baja</th>
 					        <th style="width: 200px" scope="col">Editar</th>
 					        <th style="width: 200px" scope="col">Eliminar</th>
 					        </tr>
@@ -56,6 +57,7 @@
 				                <td style="vertical-align:middle"><%= a.getNombre() %></td>
 				                <td style="vertical-align:middle"><%= a.getTelefono() %></td>
 				                <td style="vertical-align:middle"><%= a.getCif() %></td>
+				                <td style="vertical-align:middle"><%= a.getBaja() %></td>
 				                <td style="vertical-align:middle">
 				                	 <a href="ProveedoresServlet?Operacion=Ver&Id=<%= a.getId() %>">
 		                            	<button type="button" class="btn btn-warning" style="width: 100px;">Editar</button>

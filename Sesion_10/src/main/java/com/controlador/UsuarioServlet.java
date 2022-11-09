@@ -4,9 +4,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+
 import dao.pojos.Pedido;
 import dao.pojos.Usuario;
 import Service.DatosUsuario;
@@ -15,6 +18,7 @@ import Service.PedidosUsuario;
 /**
  * Servlet implementation class UsuarioServlet
  */
+@MultipartConfig
 public class UsuarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -63,6 +67,23 @@ public class UsuarioServlet extends HttpServlet {
 			 user.setTelefono(request.getParameter("Telefono"));
 
 			 user.setEmail(usuario.getEmail());
+			 
+			 
+			 //Cargamos la imagen
+			 Part filePart = request.getPart("Imagen"); 
+			 String fileName = filePart.getSubmittedFileName();
+			 if (!fileName.equals("")) {
+				 for (Part part : request.getParts()) {
+						part.write("F:\\Ale\\Formaciones\\Sesion_10\\src\\main\\webapp\\Sources\\Imagenes\\Perfiles\\" + fileName);
+					 }
+				 request.getSession().setAttribute("Imagen", fileName);
+				 response.getWriter().print("The file uploaded sucessfully."); 
+				 user.setImagen(fileName);
+			 }else {
+				 user.setImagen(usuario.getImagen());
+				 
+			 }
+
 			 //Modificamos el usuario en base de datos
 			 u.modificarUsuario(user);
 			 

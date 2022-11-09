@@ -34,7 +34,7 @@ public class UsuariosServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		PropertyConfigurator.configure("F:\\Ale\\Formaciones\\Sesion_10\\src\\main\\java\\log4j.properties");
+		PropertyConfigurator.configure("D:\\Ale\\Formaciones\\Sesion_10\\src\\main\\java\\log4j.properties");
 		
 		//FUNCIONES EMPLEADO
 		if (request.getParameter("Entidad").equals("Empleado")) { //Recoger usuarios empleado
@@ -72,6 +72,7 @@ public class UsuariosServlet extends HttpServlet {
 				 user.setTelefono(request.getParameter("Telefono"));
 
 				 user.setEmail(request.getParameter("Email"));
+				 user.setImagen("");
 				 //Modificamos el usuario en base de datos
 				 DatosUsuario.modificarUsuario(user);
 				 
@@ -100,6 +101,7 @@ public class UsuariosServlet extends HttpServlet {
 				 user.setTelefono(request.getParameter("Telefono"));
 				 user.setEmail(request.getParameter("Email"));
 				 user.setId_rol(1);
+				 user.setImagen("");
 				 //Insertamos al usuario en la base de datos
 				 DatosUsuario.insertarUsuario(user);
 				 
@@ -161,7 +163,7 @@ public class UsuariosServlet extends HttpServlet {
 				 user.setProvincia(request.getParameter("Provincia"));
 				 user.setLocalidad(request.getParameter("Localidad"));
 				 user.setTelefono(request.getParameter("Telefono"));
-
+				 user.setImagen("");
 				 user.setEmail(request.getParameter("Email"));
 				
 				 //Modificamos el usuario en base de datos
@@ -191,6 +193,7 @@ public class UsuariosServlet extends HttpServlet {
 				 user.setTelefono(request.getParameter("Telefono"));
 				 user.setEmail(request.getParameter("Email"));
 				 user.setId_rol(3);
+				 user.setImagen("");
 				 //Insertamos al usuario en la base de datos
 				 DatosUsuario.insertarUsuario(user);
 				 
@@ -242,7 +245,7 @@ public class UsuariosServlet extends HttpServlet {
 				 user.setProvincia(request.getParameter("Provincia"));
 				 user.setLocalidad(request.getParameter("Localidad"));
 				 user.setTelefono(request.getParameter("Telefono"));
-	
+				 user.setImagen("");
 				 user.setEmail(request.getParameter("Email"));
 				
 				 //Modificamos el usuario en base de datos
@@ -272,6 +275,7 @@ public class UsuariosServlet extends HttpServlet {
 				 user.setTelefono(request.getParameter("Telefono"));
 				 user.setEmail(request.getParameter("Email"));
 				 user.setId_rol(2);
+				 user.setImagen("");
 				 //Insertamos al usuario en la base de datos
 				 DatosUsuario.insertarUsuario(user);
 				 

@@ -75,7 +75,7 @@
 				                </td>
 				                <td style="vertical-align:middle">
 				                	 <a href="UsuariosServlet?Entidad=Admin&Operacion=EliminarEmpleado&Id=<%= a.getId() %>">
-		                            	<button type="button" class="btn btn-danger" style="width: 100px;">Eliminar</button>
+		                            	<button type="button" class="btn btn-danger" onClick="confirmarAccion()" style="width: 100px;">Eliminar</button>
 		                            </a>
 				                </td>
 
@@ -135,6 +135,21 @@
         }
       });
     </script>
+    
+    <script>
+		const confirmarAccion = async () =>{
+			
+			if (confirm("¿Estás seguro de que desea eliminarlo?") == true) {
+				
+			}else{
+				
+			}
+			 
+		 }
+		
+
+	</script>
+  
   
 
 </body>

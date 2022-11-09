@@ -63,12 +63,12 @@ public class DocumentoService {
 			Paragraph para2 = new Paragraph();
 			tamanno = 12;
 			para2.add("\n\n");
-			para2.add("Nombre de la empresa: " + configuracion.get(3).getValor());
+			para2.add("Nombre de la empresa: " + configuracion.get(4).getValor());
 			para2.add("\n\n");
 			para2.setFont(new Font(FontFactory.getFont("Sans", tamanno , Font.NORMAL, BaseColor.BLACK)));
-			para2.add("Dirección empresa: "+  configuracion.get(5).getValor());
+			para2.add("Dirección empresa: "+  configuracion.get(2).getValor());
 			para2.add("\n\n");
-			para2.add("CIF/NIF: " + configuracion.get(4).getValor());
+			para2.add("CIF/NIF: " + configuracion.get(1).getValor());
 			para2.add("\n\n");
 			para2.add("Información del pedido: ");
 			para2.add("\n\n");

@@ -50,6 +50,7 @@ public class ConfiguracionServlet extends HttpServlet {
 			Configuracion c3 = new Configuracion();
 			Configuracion c4 = new Configuracion();
 			Configuracion c5 = new Configuracion();
+			Configuracion c6 = new Configuracion();
 			
 			//Map<String,String[]> mapaParam = request.getParameterMap();
 			
@@ -78,6 +79,11 @@ public class ConfiguracionServlet extends HttpServlet {
 			c5.setClave("direccion");
 			c5.setValor(request.getParameter("direccion"));
 			config.add(c5);
+			
+			c6.setClave("moneda");
+			c6.setValor(request.getParameter("moneda"));
+			config.add(c6);
+			request.getSession().setAttribute("Moneda", c6.getValor());
 			
 			//Modificamos los valores en base de datos
 			ConfiguracionService.setConfiguracion(config);

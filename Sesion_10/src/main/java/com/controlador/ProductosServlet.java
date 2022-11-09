@@ -94,7 +94,7 @@ public class ProductosServlet extends HttpServlet {
 				 Part filePart = request.getPart("Imagen"); 
 				 String fileName = filePart.getSubmittedFileName();
 				 for (Part part : request.getParts()) {
-				      part.write("F:\\Ale\\Formaciones\\Sesion_10\\src\\main\\webapp\\Sources\\Imagenes\\Productos\\" + fileName);
+				      part.write("D:\\Ale\\Formaciones\\Sesion_10\\src\\main\\webapp\\Sources\\Imagenes\\Productos\\" + fileName);
 				 }
 				 response.getWriter().print("The file uploaded sucessfully.");
 				 articulo.setImagen(fileName);
@@ -146,7 +146,7 @@ public class ProductosServlet extends HttpServlet {
 				 Part filePart = request.getPart("Archivo"); 
 				 String fileName = filePart.getSubmittedFileName();
 				 for (Part part : request.getParts()) {
-				      part.write("F:\\Ale\\Formaciones\\Sesion_10\\src\\main\\webapp\\Sources\\Ficheros\\Importar\\" + fileName);
+				      part.write("D:\\Ale\\Formaciones\\Sesion_10\\src\\main\\webapp\\Sources\\Ficheros\\Importar\\" + fileName);
 				 }
 				 response.getWriter().print("The file uploaded sucessfully.");
 				

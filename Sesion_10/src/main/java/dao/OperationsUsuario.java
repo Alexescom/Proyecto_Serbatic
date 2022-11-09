@@ -46,6 +46,7 @@ public class OperationsUsuario {
 					user.setTelefono(rs.getString("telefono"));
 					user.setDni(rs.getString("dni"));
 					user.setId_rol(rs.getInt("id_rol"));
+					user.setImagen(rs.getString("imagen"));
 					stmt.close();
 					return user;
 		        
@@ -85,7 +86,7 @@ public class OperationsUsuario {
 	        
 			try {
 				
-				stmt = conexion.prepareStatement("update usuarios set email= ?, nombre=?, apellido1=?, apellido2=?, direccion=?, provincia=?, localidad=?, telefono=?, dni=? where id=?");
+				stmt = conexion.prepareStatement("update usuarios set email= ?, nombre=?, apellido1=?, apellido2=?, direccion=?, provincia=?, localidad=?, telefono=?, dni=?, imagen=? where id=?");
 				stmt.setString(1, user.getEmail());
 				stmt.setString(2, user.getNombre());
 				stmt.setString(3, user.getApellido1());
@@ -95,8 +96,8 @@ public class OperationsUsuario {
 				stmt.setString(7, user.getLocalidad());
 				stmt.setString(8, user.getTelefono());
 				stmt.setString(9, user.getDni());
-				stmt.setInt(10, user.getId());
-				
+				stmt.setInt(11, user.getId());
+				stmt.setString(10, user.getImagen());
 				int result = stmt.executeUpdate();
 				conexion.commit();
 				

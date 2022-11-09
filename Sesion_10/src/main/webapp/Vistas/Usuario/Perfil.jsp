@@ -44,7 +44,7 @@
 		            	}
 		            %>
                          <div class="bg-light col-md-11 mx-auto overflow-auto p-3 rounded border border-3"  >
-                          <form id="form" class="card card-body my-auto" action= "<%= request.getContextPath() %>/UsuarioServlet?Operacion=Editar" method= "POST" >
+                          <form id="form" class="card card-body my-auto" action= "<%= request.getContextPath() %>/UsuarioServlet?Operacion=Editar" method= "POST" enctype="multipart/form-data">
                           	<div class="row">
                               <div class="col-6 overflow-auto border-right" >
                                 <h3 class="text-center"> Información personal:</h3>
@@ -195,9 +195,26 @@
                                   		</div>
                                 	</div>
                                 </div>
-                         
-                                
-                                <br></br><br><br></br><br><br></br><br><br></br><br><br></br><br><br></br><br><br></br><br><br><br><br><br>
+                                <br><br>
+                                <div class="col-md-12 overflow-hidden  float-right">
+                                	<div class="row justify-content-md-center">
+                                		<div class="col-5">
+                                    		<h6 class="text-right"> &#11166 &nbsp Cambiar foto de perfil:</h6>
+                                  		</div>
+										<div class="col-7  m-auto" >
+											<div >
+	                                    		<input class="text" type="file" style="color:grey;" accept="image/png, image/jpeg" value="<%= request.getContextPath() %>/Sources/Imagenes/Perfiles/<%= usuario.getImagen() %>" name="Imagen"></input>
+	                                  		</div>
+		                                    
+                                  		</div>
+                                	</div>
+                                </div>    
+                                <br><br>                    
+                                <center><div class="col-lg-12 ">
+									<img class="bd-placeholder-img rounded-circle" src ="<%= request.getContextPath() %>/Sources/Imagenes/Perfiles/<%= usuario.getImagen() %>" width="340" height="340"></img>
+							        <h2 class="fw-normal">Foto de perfil</h2>
+							     </div></center>
+                                <br></br><br>
                                 <div class="col-md-12 overflow-hidden  float-right">
                                 	<div class="row justify-content-md-center">
 		                                <div class="col-7">

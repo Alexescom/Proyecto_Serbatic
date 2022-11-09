@@ -44,7 +44,9 @@
 		<!-- Example single danger button -->
 		<div class="btn-group">
 		  <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+		  	<img src="<%= request.getContextPath() %>/Sources/Imagenes/Perfiles/<%= request.getSession().getAttribute("Imagen") %>"  alt="" width="32" height="32" class="rounded-circle me-2">
 		    <%= request.getSession().getAttribute("Email") %>
+		    
 		  </button>
 		  <ul class="dropdown-menu">
 		    <li><a href="<%= request.getContextPath() %>/UsuarioServlet?Operacion=Perfil" class="dropdown-item" href="#">Ver perfil</a></li>
@@ -54,6 +56,7 @@
 		    <li><a class="dropdown-item" href="LogoutServlet">Cerrar sesión</a></li>
 		  </ul>
 		</div>
+		
         <%} %>
          
         

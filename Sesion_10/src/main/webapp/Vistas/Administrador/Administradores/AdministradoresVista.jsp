@@ -61,17 +61,9 @@
 	                                 </div>
                                 </div>
                                 <br></br>
-                                <div class="col-md-12 overflow-hidden  float-right">
-                                	<div class="row justify-content-md-center">
-                                		<div class="col-6">
-	                                    	<h6 class="text-right"> &#11166 &nbsp Contraseña:</h6>
-	                                  	</div>
-	                                  	<div class="col-6  m-auto" >
-	                                    	<input class="text" style="color:grey;" value=<%=usuario.getClave()%> name="Password"></input>
-	                                  	</div>
-	                                 </div>
-                                </div>
-                                <br><br>
+       
+	                            <input class="text" style="color:grey;" type="hidden" value=<%=usuario.getClave()%> name="Password"></input>
+	  
                                 <div class="col-md-12 overflow-hidden  float-right">
                                 	<div class="row justify-content-md-center">
                                 		<div class="col-6">
